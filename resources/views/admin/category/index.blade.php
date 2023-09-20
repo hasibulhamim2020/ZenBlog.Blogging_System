@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-xl-8 mx-auto">
+    <div class="col-xl-10 mx-auto">
 
         <div class="card">
             <div class="card-body">
@@ -25,13 +25,17 @@
                             <td>{{ $category->category_name }}</td>
                             <td>{{ $category->status ==1 ? 'Active' : 'Inactive' }}</td>
                             <td>
-                                <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                @if($category->status ==1)
-                                    <a href="{{ route('categories.show', $category->id) }}" class="btn btn-sm btn-warning">Active</a>
+                                <a href="{{ route('categories.edit',$category->id) }}" class=" mx-1 float-start btn btn-sm btn-secondary">Edit</a>
+                                @if($category->status == 1)
+                                    <a href="{{ route('categories.show',$category->id) }}" class="mx-1 float-start btn btn-sm btn-warning">Inactive</a>
                                 @else
-                                    <a href="{{ route('categories.show', $category->id) }}" class="btn btn-sm btn-success">Inactive</a>
+                                    <a href="{{ route('categories.show',$category->id) }}" class="mx-1 float-start btn btn-sm btn-info">Active</a>
                                 @endif
-                                <a href="{{ route('categories.destroy', $category->id) }}" class="btn btn-sm btn-danger">Delete</a>
+                                <form action="{{route('categories.destroy',$category->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm float-start mx-1 " onclick="return confirm('Are you sure you want to delete this!!')">Delete</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

@@ -19,4 +19,16 @@ class Category extends Model
         self::$category-> category_name = $request->category_name;
         self::$category->save();
     }
+
+    public static function statusCheck($id){
+        self::$category = Category::find($id);
+        if (self::$category-> status == 1){
+            self::$category-> status = 0;
+        }
+        else{
+            self::$category-> status = 1;
+        }
+        self::$category->save();
+    }
+
 }

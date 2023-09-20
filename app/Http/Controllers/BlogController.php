@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Blog;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class BlogController extends Controller
 {
-    private static $categoryData;
+    private static $blogData;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.category.index',[
-            'categories'=>Category::all()
+        return view('admin.blog.index',[
+            'blogs'=>Blog::all()
         ]);
     }
 
@@ -23,7 +24,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.blog.create',[
+            'categories'=>Category::all()
+        ]);
     }
 
     /**
@@ -31,8 +34,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::saveInfo($request);
-        return redirect(route('categories.index'));
+//        return $request
+        Blog::saveInfo($request);
+        return redirect(route('blogs.index'));
     }
 
     /**
@@ -40,8 +44,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        Category::statusCheck($id);
-        return back();
+        //
     }
 
     /**
@@ -49,8 +52,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.category.edit',[
-            'category'=>Category::find($id)
+        return view('admin.blog.edit',[
+            'blog'=>Blog::find($id),
+            'categories'=>Category::all()
         ]);
     }
 
@@ -59,8 +63,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Category::saveInfo($request,$id);
-        return redirect(route('categories.index'));
+        Blog::saveInfo($request,$id);
+        return redirect(route('blogs.index'));
     }
 
     /**
@@ -68,8 +72,13 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        self::$categoryData = Category::find($id);
-        self::$categoryData->delete();
+        self::$blogData = Blog::find($id);
+        if (self::$blogData->image){
+            if (file_exists(self::$blogData->image)){
+                unlink(self::$blogData->image);
+            }
+        }
+        self::$blogData->delete();
         return back();
     }
 }
