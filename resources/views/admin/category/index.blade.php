@@ -9,7 +9,7 @@
                 <div class="border p-3 rounded">
                     <h6 class="mb-0 text-uppercase">category table</h6>
                     <hr>
-                    <table class="table table-hover table-bordered table-striped">
+                    <table id="example2" class="table table-hover table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>Sl. No.</th>

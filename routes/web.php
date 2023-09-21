@@ -14,6 +14,8 @@ Route::get('/category',[HomeController::class,'category'])->name('category');
 Route::get('/single/post',[HomeController::class,'singlePost'])->name('single-post');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 Route::get('/search/result',[HomeController::class,'searchResult'])->name('search-result');
+
+Route::get('/blog/details/{slug}',[HomeController::class,'blogDetails'])->name('blog.details');
 /////////////Front End Route end //////////////////////
 ///
 ///

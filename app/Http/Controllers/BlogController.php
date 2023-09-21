@@ -44,7 +44,8 @@ class BlogController extends Controller
      */
     public function show(string $id)
     {
-        //
+        Blog::statusCheck($id);
+        return back();
     }
 
     /**
