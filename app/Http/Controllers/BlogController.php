@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use function PHPUnit\Runner\validate;
 
 class BlogController extends Controller
 {
@@ -34,7 +35,6 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-//        return $request
         Blog::saveInfo($request);
         return redirect(route('blogs.index'));
     }
@@ -44,7 +44,8 @@ class BlogController extends Controller
      */
     public function show(string $id)
     {
-        //
+        Blog::statusCheck($id);
+        return back();
     }
 
     /**

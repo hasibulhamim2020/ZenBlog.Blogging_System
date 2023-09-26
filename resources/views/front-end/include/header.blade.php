@@ -32,6 +32,8 @@
 
                 <li><a href="{{route('about')}}">About</a></li>
                 <li><a href="{{route('contact')}}">Contact</a></li>
+                <li><a href="{{route('sign-up')}}">Sign up</a></li>
+                <li><a href="{{route('sign-in')}}">Sign In</a></li>
             </ul>
         </nav><!-- .navbar -->
 

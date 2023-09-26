@@ -80,39 +80,18 @@
 
                 <div class="col-lg-8">
                     <div class="row g-5">
-                        <div class="col-lg-4 border-start custom-border">
+                        <div class="col-lg-8 border-start custom-border">
+                            @foreach($blogs as $blog)
                             <div class="post-entry-1">
-                                <a href="single-post.html"><img src="{{ asset('front-end-assets')}}/assets/img/post-landscape-2.jpg" alt="" class="img-fluid"></a>
-                                <div class="post-meta"><span class="date">Sport</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                <h2><a href="single-post.html">Let’s Get Back to Work, New York</a></h2>
+                                <a href="{{ route('blog.details',['slug'=>$blog->slug]) }}"><img src="{{ asset($blog->image)}}" alt="" class="img-fluid" style="width: 400px" height="400px"></a>
+                                <div class="post-meta">
+                                    <span class="date">{{ $blog->category->category_name }}</span>
+                                    <span class="mx-1">&bullet;</span>
+                                    <span>{{ date('M jS \'y',strtotime($blog->created_at)) }}</span>
+                                </div>
+                                <h2><a href="{{ route('blog.details',['slug'=>$blog->slug]) }}">{{ $blog->title }}</a></h2>
                             </div>
-                            <div class="post-entry-1">
-                                <a href="single-post.html"><img src="{{ asset('front-end-assets')}}/assets/img/post-landscape-5.jpg" alt="" class="img-fluid"></a>
-                                <div class="post-meta"><span class="date">Food</span> <span class="mx-1">&bullet;</span> <span>Jul 17th '22</span></div>
-                                <h2><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
-                            </div>
-                            <div class="post-entry-1">
-                                <a href="single-post.html"><img src="{{ asset('front-end-assets')}}/assets/img/post-landscape-7.jpg" alt="" class="img-fluid"></a>
-                                <div class="post-meta"><span class="date">Design</span> <span class="mx-1">&bullet;</span> <span>Mar 15th '22</span></div>
-                                <h2><a href="single-post.html">Why Craigslist Tampa Is One of The Most Interesting Places On the Web?</a></h2>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 border-start custom-border">
-                            <div class="post-entry-1">
-                                <a href="single-post.html"><img src="{{ asset('front-end-assets')}}/assets/img/post-landscape-3.jpg" alt="" class="img-fluid"></a>
-                                <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                <h2><a href="single-post.html">6 Easy Steps To Create Your Own Cute Merch For Instagram</a></h2>
-                            </div>
-                            <div class="post-entry-1">
-                                <a href="single-post.html"><img src="{{ asset('front-end-assets')}}/assets/img/post-landscape-6.jpg" alt="" class="img-fluid"></a>
-                                <div class="post-meta"><span class="date">Tech</span> <span class="mx-1">&bullet;</span> <span>Mar 1st '22</span></div>
-                                <h2><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>
-                            </div>
-                            <div class="post-entry-1">
-                                <a href="single-post.html"><img src="{{ asset('front-end-assets')}}/assets/img/post-landscape-8.jpg" alt="" class="img-fluid"></a>
-                                <div class="post-meta"><span class="date">Travel</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                <h2><a href="single-post.html">5 Great Startup Tips for Female Founders</a></h2>
-                            </div>
+                            @endforeach
                         </div>
 
                         <!-- Trending Section -->
