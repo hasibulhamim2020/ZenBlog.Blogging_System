@@ -9,7 +9,7 @@
                     <div class="border p-3 rounded">
                         <h5 class="mb-0 text-uppercase">Blog Form</h5>
                         <hr/>
-                        <form action="{{ route('blogs.update',$blog->id) }}" method="post" class="row g-3" enctype="multipart/form-data">
+                        <form action="{{ route('blogs.store') }}" method="post" class="row g-3" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="col-12">
@@ -24,9 +24,10 @@
 
                             <div class="col-12">
                                 <label class="form-label">Category</label>
-                                <select value="{{$blog->category->category_name}}" name="category_id" id="" class="form-control">
+                                <select value="{{$blog->category_id}}" name="category_id" id="" class="form-control">
+                                    <option value="">Select Category</option>
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}" {{($category->id == $blog->category_id) ? 'selected' : '' }}>{{$category->category_name}}</option>
+                                        <option value="{{$category->id}}">{{$category->category_name}}</option>
                                     @endforeach
                                 </select>
                             </div>

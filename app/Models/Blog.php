@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use App\Models\Category;
 
 
 class Blog extends Model
@@ -21,20 +20,11 @@ class Blog extends Model
             self::$blog = new Blog();
         }
         self::$blog-> title           = $request->title;
-        if (self::$blog-> slug != $request->slug){
-            self::$blog-> slug        = self::makeSlug($request);
-        }
+        self::$blog-> slug            = self::makeSlug($request);
         self::$blog-> category_id     = $request->category_id;
         self::$blog-> author_name     = $request->author_name;
         self::$blog-> description     = $request->description;
-       if ($request->file('image')){
-           if (self::$blog->image){
-               if (file_exists(self::$blog->image)){
-                   unlink(self::$blog->image);
-               }
-           }
-           self::$blog-> image        = self::saveImage($request);
-       }
+        self::$blog-> image           = self::saveImage($request);
         self::$blog->save();
     }
 
@@ -57,21 +47,5 @@ class Blog extends Model
         }
         return self::$slug;
     }
-
-    public static function statusCheck($id){
-        self::$blog = Blog::find($id);
-        if (self::$blog-> status == 1){
-            self::$blog-> status = 0;
-        }
-        else{
-            self::$blog-> status = 1;
-        }
-        self::$blog->save();
-    }
-
-    public function category(){
-        return $this->belongsTo(Category::class,'category_id');
-    }
-
 
 }

@@ -24,8 +24,6 @@
     <link href="{{ asset('admin-assets') }}/assets/css/semi-dark.css" rel="stylesheet" />
     <link href="{{ asset('admin-assets') }}/assets/css/header-colors.css" rel="stylesheet" />
 
-    <link href="{{ asset('admin-assets') }}/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
-
     <title>ZenBlog Admin Pannel</title>
 </head>
 <body>
@@ -82,9 +80,5 @@
     new PerfectScrollbar(".best-product")
     new PerfectScrollbar(".top-sellers-list")
 </script>
-
-<script src="{{ asset('admin-assets') }}/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('admin-assets') }}/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
-<script src="{{ asset('admin-assets') }}/assets/js/table-datatable.js"></script>
 </body>
 </html>
